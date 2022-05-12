@@ -1,4 +1,6 @@
 package domain;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Restaurant {
 
@@ -7,6 +9,10 @@ public class Restaurant {
 	public String nameRestaurant;
 	public int actualCapacity;
 	public static final int MAXCAPACITY= 24;
+	
+	public List<Table> tables= new ArrayList<>();
+	
+	
 	
 	public Restaurant(String name) {
 		
@@ -20,7 +26,15 @@ public class Restaurant {
 		return MAXCAPACITY- actualCapacity;
 	
 	}
-
+	public String  createTable(int number) {
+		Table table= new Table(number);
+		tables.add(table);
+		return table.getId();
+	}
+	public void removeTable(int number) {
+		System.out.println("UWU");
+		tables.remove(number);
+	}
 	public String getName() {
 		
 		return this.nameRestaurant;
@@ -28,6 +42,9 @@ public class Restaurant {
 	public int getActualCapacity() {
 		return this.actualCapacity;
 				
+	}
+	public List<Table> updateList() {
+		return this.tables;
 	}
 	public String getId() {
 		return this.id;
