@@ -18,7 +18,7 @@ public class ControllerRestaurant {
 		return restaurant.getId();
 	}
 	
-	public String addTable(String id, int number) {
+	public String addTable(String id, int number) throws Exception {
 		Restaurant restaurant= new RestaurantRepository().findRestaurantById(id);
 		
 		String tableId=restaurant.createTable(number);
@@ -32,19 +32,19 @@ public class ControllerRestaurant {
 		
 	}
 	
-	public int addPeople(String id, int number){
+	public int addPeople(String id, int number) throws Exception{
 		
 		Restaurant restaurant= new RestaurantRepository().findRestaurantById(id);
-		if(restaurant.actualCapacity+number> 24) {
+		if(number> 24) {
 			return -1;
 		}
 		return restaurant.addPeople(number);
 		
 		
 	}
-	public List<Table> updateList(String id) {
+	public String updateList(String id) {
 		Restaurant restaurant= new RestaurantRepository().findRestaurantById(id);
-		return restaurant.updateList();
+		return  restaurant.updateList();
 	}
 	
 	

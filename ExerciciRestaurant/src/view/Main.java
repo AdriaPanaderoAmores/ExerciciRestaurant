@@ -7,7 +7,7 @@ import domain.Restaurant;
 public class Main {
 
 static Scanner sc=  new Scanner(System.in);
-private static String[] tables= new String[24];
+private static String tables;
 private static int cont=1;
 	
 	public static void main (String[] args) {
@@ -62,11 +62,10 @@ private static int cont=1;
 				capacity=24;
 			}  
 			else {
-				tables[cont-1]= new ControllerRestaurant().addTable(id, people);
-				for(int i=0; i<cont; i++) {
-					System.out.println(tables[i]);
-				}
-				cont++;
+				tables= new ControllerRestaurant().addTable(id, people);
+				
+					System.out.println(tables);
+				
 				System.out.println("Queda un espai de "+capacity+" persones");
 				selection(id);
 			}
@@ -79,17 +78,16 @@ private static int cont=1;
 		int table= askTable();
 		new ControllerRestaurant().RemoveTable(id, table);
 		tables=new ControllerRestaurant().updateList(id);
-		
 		viewTables(id);
 			
 		
 	}
 	
 	private static void viewTables(String id) throws Exception {
-	
-		for(int i=1; i<cont; i++) {
-		System.out.println(tables[i-1]);
-		}
+		
+		tables = new ControllerRestaurant().updateList(id);
+		System.out.println(tables);
+		
 		selection(id);
 	}
 	
